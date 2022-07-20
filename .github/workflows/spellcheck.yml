@@ -1,0 +1,26 @@
+name: Spell checking
+on:
+  pull_request_target:
+  workflow_dispatch:
+
+jobs:
+  spelling:
+    name: Spell checking
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - uses: check-spelling/check-spelling@v0.0.20-alpha7
+        id: spelling
+        with:
+          experimental_path: docs/whitepaper
+          extra_dictionaries:
+            cspell:cpp/cpp.txt
+            cspell:aws/aws.txt
+            cspell:html/html.txt
+            cspell:django/django.txt
+            cspell:filetypes/filetypes.txt
+            cspell:npm/npm.txt
+            cspell:golang/go.txt
+            cspell:fullstack/fullstack.txt
+            cspell:css/css.txt
